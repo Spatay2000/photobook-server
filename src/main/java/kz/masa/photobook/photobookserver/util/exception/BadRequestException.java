@@ -1,4 +1,4 @@
-package kz.masa.photobook.photobookserver.exception;
+package kz.masa.photobook.photobookserver.util.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

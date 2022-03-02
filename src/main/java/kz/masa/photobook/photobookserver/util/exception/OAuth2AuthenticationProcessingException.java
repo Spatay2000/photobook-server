@@ -1,4 +1,4 @@
-package kz.masa.photobook.photobookserver.exception;
+package kz.masa.photobook.photobookserver.util.exception;
 
 import org.springframework.security.core.AuthenticationException;
 

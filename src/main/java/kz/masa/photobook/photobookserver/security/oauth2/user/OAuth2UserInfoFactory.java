@@ -1,6 +1,6 @@
 package kz.masa.photobook.photobookserver.security.oauth2.user;
 
-import kz.masa.photobook.photobookserver.exception.OAuth2AuthenticationProcessingException;
+import kz.masa.photobook.photobookserver.util.exception.OAuth2AuthenticationProcessingException;
 import kz.masa.photobook.photobookserver.model.AuthProvider;
 
 import java.util.Map;

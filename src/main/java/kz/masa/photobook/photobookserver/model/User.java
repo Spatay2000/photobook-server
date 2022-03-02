@@ -1,25 +1,26 @@
 package kz.masa.photobook.photobookserver.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import java.sql.Timestamp;
 
 @Entity
-@Table(name = "users", uniqueConstraints = {
-        @UniqueConstraint(columnNames = "email")
-})
-public class User {
+@Table(name = "users")
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+public class User{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Email
+    private String email;
 
     @Column(nullable = false)
     private String name;
-
-    @Email
-    @Column(nullable = false)
-    private String email;
 
     private String imageUrl;
 
@@ -35,13 +36,18 @@ public class User {
 
     private String providerId;
 
-    public Long getId() {
-        return id;
-    }
+    @CreationTimestamp
+    @Column(name = "created_at", updatable = false, nullable = false)
+    @JsonIgnore
+    protected Timestamp createdAt;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @Column(name = "updated_at")
+    @JsonIgnore
+    protected Timestamp updatedAt;
+
+    @Column(name = "deleted_at")
+    @JsonIgnore
+    protected Timestamp deletedAt;
 
     public String getName() {
         return name;

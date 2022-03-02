@@ -14,14 +14,13 @@ spring:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     properties:
       hibernate:
-        format_sql: true
-        jdbc.lob.non_contextual_creation: true
-        temp.use_jdbc_metadata_defaults: false
-        synonyms: true
         dialect: org.hibernate.dialect.PostgreSQL10Dialect
-        default-schema: OSADMIN
-        enable_lazy_load_no_trans: true
     show-sql: false
+  minio:
+    bucket: ${MINIO_BUCKET:photobook}
+    accessKey: ${MINIO_ACCESS_KEY:minio}
+    secretKey: ${MINIO_SECRET_KEY:minio123}
+    url: ${MINIO_URL:http://localhost:443}
   security:
     oauth2:
       client:

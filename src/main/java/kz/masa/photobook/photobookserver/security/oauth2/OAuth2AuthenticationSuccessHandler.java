@@ -1,7 +1,7 @@
 package kz.masa.photobook.photobookserver.security.oauth2;
 
 import kz.masa.photobook.photobookserver.config.AppProperties;
-import kz.masa.photobook.photobookserver.exception.BadRequestException;
+import kz.masa.photobook.photobookserver.util.exception.BadRequestException;
 import kz.masa.photobook.photobookserver.security.TokenProvider;
 import kz.masa.photobook.photobookserver.util.CookieUtils;
 import org.springframework.beans.factory.annotation.Autowired;

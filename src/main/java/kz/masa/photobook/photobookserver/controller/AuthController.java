@@ -1,12 +1,12 @@
 package kz.masa.photobook.photobookserver.controller;
 
-import kz.masa.photobook.photobookserver.exception.BadRequestException;
+import kz.masa.photobook.photobookserver.util.exception.BadRequestException;
 import kz.masa.photobook.photobookserver.model.AuthProvider;
 import kz.masa.photobook.photobookserver.model.User;
-import kz.masa.photobook.photobookserver.payload.ApiResponse;
-import kz.masa.photobook.photobookserver.payload.AuthResponse;
-import kz.masa.photobook.photobookserver.payload.LoginRequest;
-import kz.masa.photobook.photobookserver.payload.SignUpRequest;
+import kz.masa.photobook.photobookserver.security.payload.ApiResponse;
+import kz.masa.photobook.photobookserver.security.payload.AuthResponse;
+import kz.masa.photobook.photobookserver.security.payload.LoginRequest;
+import kz.masa.photobook.photobookserver.security.payload.SignUpRequest;
 import kz.masa.photobook.photobookserver.repository.UserRepository;
 import kz.masa.photobook.photobookserver.security.TokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +21,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("/auth")
@@ -66,6 +68,7 @@ public class AuthController {
         user.setEmail(signUpRequest.getEmail());
         user.setPassword(signUpRequest.getPassword());
         user.setProvider(AuthProvider.local);
+        user.setCreatedAt(Timestamp.valueOf(LocalDateTime.now()));
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
@@ -73,7 +76,7 @@ public class AuthController {
 
         URI location = ServletUriComponentsBuilder
                 .fromCurrentContextPath().path("/user/me")
-                .buildAndExpand(result.getId()).toUri();
+                .buildAndExpand(result.getEmail()).toUri();
 
         return ResponseEntity.created(location)
                 .body(new ApiResponse(true, "User registered successfully@"));

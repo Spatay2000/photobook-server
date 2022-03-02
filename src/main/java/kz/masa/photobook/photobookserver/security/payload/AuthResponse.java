@@ -1,4 +1,4 @@
-package kz.masa.photobook.photobookserver.payload;
+package kz.masa.photobook.photobookserver.security.payload;
 
 public class AuthResponse {
     private String accessToken;

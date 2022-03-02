@@ -1,7 +1,7 @@
 package kz.masa.photobook.photobookserver.security;
 
 
-import kz.masa.photobook.photobookserver.exception.ResourceNotFoundException;
+import kz.masa.photobook.photobookserver.util.exception.ResourceNotFoundException;
 import kz.masa.photobook.photobookserver.model.User;
 import kz.masa.photobook.photobookserver.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,15 +28,6 @@ public class CustomUserDetailsService implements UserDetailsService {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() ->
                         new UsernameNotFoundException("User not found with email : " + email)
-        );
-
-        return UserPrincipal.create(user);
-    }
-
-    @Transactional
-    public UserDetails loadUserById(Long id) {
-        User user = userRepository.findById(id).orElseThrow(
-            () -> new ResourceNotFoundException("User", "id", id)
         );
 
         return UserPrincipal.create(user);
