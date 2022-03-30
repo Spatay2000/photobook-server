@@ -40,6 +40,11 @@ public class AlbumController extends CommonService {
         return builder(success(albumService.publishAlbum(album, email)));
     }
 
+    @RequestMapping(value = "/draft", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<?> draft(@RequestBody Album album, @RequestHeader(value = "email", required = false) String email) {
+        return builder(success(albumService.draftAlbum(album, email)));
+    }
+
     @RequestMapping(value = "/create", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<?> create(@RequestBody Album album, @RequestHeader(value = "email", required = false) String email) {
         return builder(success(albumService.createAlbum(album, email)));

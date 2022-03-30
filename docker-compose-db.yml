@@ -1,4 +1,4 @@
-version: '3.7'
+дversion: '3.7'
 services:
   photobook_pg:
     image: postgres:latest

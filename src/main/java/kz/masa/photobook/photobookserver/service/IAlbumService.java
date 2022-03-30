@@ -13,6 +13,7 @@ public interface IAlbumService {
     List<AlbumDTO> getAllAlbums();
     List<AlbumDTO> getAllFiltered(AlbumStatus albumStatus);
     AlbumDTO publishAlbum(Album album, String email);
+    AlbumDTO draftAlbum(Album album, String email);
     AlbumDTO createAlbum(Album album, String email);
     AlbumDTO updateAlbum(Album album, String email);
     List<FileStorageAlbum> uploadFiles(List<MultipartFile> multipartFiles, Long albumId);

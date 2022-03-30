@@ -73,6 +73,21 @@ public class AlbumService implements IAlbumService {
     }
 
     @Override
+    public AlbumDTO draftAlbum(Album album, String email) {
+        Album draftAlbum;
+        if (album.getId() == null) {
+            draftAlbum = albumMapper.apiToEntity(this.createAlbum(album, email));
+        } else {
+            draftAlbum = albumMapper.apiToEntity(this.updateAlbum(album, email));
+        }
+
+        draftAlbum.setAlbumStatus(AlbumStatus.DRAFT);
+        draftAlbum.setPublishedDate(LocalDateTime.now());
+        albumRepository.save(draftAlbum);
+        return this.getAlbumById(album.getId());
+    }
+
+    @Override
     public AlbumDTO createAlbum(Album album, String email) {
 
         album.setCreatedAt(Timestamp.valueOf(LocalDateTime.now()));
