@@ -2,6 +2,7 @@ package kz.masa.photobook.photobookserver.service;
 
 import kz.masa.photobook.photobookserver.dto.AlbumDTO;
 import kz.masa.photobook.photobookserver.enums.AlbumStatus;
+import kz.masa.photobook.photobookserver.enums.AlbumType;
 import kz.masa.photobook.photobookserver.model.Album;
 import kz.masa.photobook.photobookserver.model.FileStorageAlbum;
 import org.springframework.web.multipart.MultipartFile;

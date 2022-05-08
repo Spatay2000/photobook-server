@@ -1,6 +1,7 @@
 package kz.masa.photobook.photobookserver.repository;
 
 import kz.masa.photobook.photobookserver.enums.AlbumStatus;
+import kz.masa.photobook.photobookserver.enums.AlbumType;
 import kz.masa.photobook.photobookserver.model.Album;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

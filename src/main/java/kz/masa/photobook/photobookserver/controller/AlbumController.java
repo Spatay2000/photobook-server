@@ -1,6 +1,7 @@
 package kz.masa.photobook.photobookserver.controller;
 
 import kz.masa.photobook.photobookserver.enums.AlbumStatus;
+import kz.masa.photobook.photobookserver.enums.AlbumType;
 import kz.masa.photobook.photobookserver.model.Album;
 import kz.masa.photobook.photobookserver.service.impl.AlbumService;
 import kz.masa.photobook.photobookserver.util.CommonService;
