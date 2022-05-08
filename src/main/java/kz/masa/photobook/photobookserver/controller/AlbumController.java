@@ -32,8 +32,8 @@ public class AlbumController extends CommonService {
     }
 
     @RequestMapping(value = "/read/filter", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<?> getAllFiltered(@RequestParam AlbumStatus albumStatus) {
-        return builder(success(albumService.getAllFiltered(albumStatus)));
+    public ResponseEntity<?> getAllFiltered(@RequestParam AlbumStatus albumStatus, @RequestParam Boolean currentUser) {
+        return builder(success(albumService.getAllFiltered(albumStatus, currentUser)));
     }
 
     @RequestMapping(value = "/publish", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)

@@ -15,4 +15,5 @@ public class FileStorageAlbumId implements Serializable {
 
     private Long fileStorageId;
     private Long albumId;
+
 }

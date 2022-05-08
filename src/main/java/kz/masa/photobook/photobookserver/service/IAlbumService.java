@@ -12,11 +12,12 @@ import java.util.List;
 public interface IAlbumService {
     AlbumDTO getAlbumById(Long id);
     List<AlbumDTO> getAllAlbums();
-    List<AlbumDTO> getAllFiltered(AlbumStatus albumStatus);
+    List<AlbumDTO> getAllFiltered(AlbumStatus albumStatus, Boolean currentUser);
     AlbumDTO publishAlbum(Album album, String email);
     AlbumDTO draftAlbum(Album album, String email);
     AlbumDTO createAlbum(Album album, String email);
     AlbumDTO updateAlbum(Album album, String email);
     List<FileStorageAlbum> uploadFiles(List<MultipartFile> multipartFiles, Long albumId);
+
     void deleteAlbumById(Long id);
 }

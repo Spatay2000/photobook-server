@@ -7,6 +7,7 @@ import kz.masa.photobook.photobookserver.mapper.AlbumMapper;
 import kz.masa.photobook.photobookserver.model.Album;
 import kz.masa.photobook.photobookserver.model.FileStorage;
 import kz.masa.photobook.photobookserver.model.FileStorageAlbum;
+
 import kz.masa.photobook.photobookserver.repository.AlbumRepository;
 import kz.masa.photobook.photobookserver.repository.FileStorageAlbumRepository;
 import kz.masa.photobook.photobookserver.repository.UserRepository;
@@ -33,6 +34,7 @@ public class AlbumService implements IAlbumService {
 
     private final FileStorageService fileStorageService;
 
+
     @Override
     public AlbumDTO getAlbumById(Long id) {
         AlbumDTO response = albumMapper.entityToApi(albumRepository.findAlbumByIdAndDeletedAtIsNull(id));
@@ -50,7 +52,13 @@ public class AlbumService implements IAlbumService {
     }
 
     @Override
-    public List<AlbumDTO> getAllFiltered(AlbumStatus albumStatus) {
+    public List<AlbumDTO> getAllFiltered(AlbumStatus albumStatus, Boolean currentUser) {
+        List<Album> result;
+        if (currentUser) {
+            result = albumRepository.findAllByAlbumStatusAndDeletedAtIsNull(albumStatus);
+        } else {
+            result = albumRepository.findAllByAlbumStatusAndDeletedAtIsNull(albumStatus);
+        }
         return albumRepository.findAllByAlbumStatusAndDeletedAtIsNull(albumStatus).stream().map(album -> {
             AlbumDTO albumDTO = albumMapper.entityToApi(album);
             albumDTO.setFileStorages(fileStorageService.getAllFileStoragesIn(fileStorageAlbumRepository.findAllByAlbumId(album.getId()).stream().map(FileStorageAlbum::getFileStorageId).collect(Collectors.toList())));
@@ -132,6 +140,8 @@ public class AlbumService implements IAlbumService {
 
         return fileStorageAlbumRepository.saveAllAndFlush(fileStorageAlbums);
     }
+
+
 
     @Override
     public void deleteAlbumById(Long id) {

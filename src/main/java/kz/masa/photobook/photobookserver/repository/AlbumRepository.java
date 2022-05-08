@@ -15,4 +15,5 @@ public interface AlbumRepository extends JpaRepository<Album, Long> {
     Album findAlbumByIdAndDeletedAtIsNull(Long id);
     List<Album> findAllByDeletedAtIsNull();
     List<Album> findAllByAlbumStatusAndDeletedAtIsNull(AlbumStatus albumStatus);
+    List<Album> findAllByAlbumStatusAndAuthorEmailAndDeletedAtIsNull(AlbumStatus albumStatus, String email);
 }

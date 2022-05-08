@@ -26,6 +26,10 @@ public class FileStorageAlbum {
     @Column(name = "album_id")
     private Long albumId;
 
+
+
+
+
     @ManyToOne
     @JoinColumn(name = "file_storage_id", nullable=false, insertable = false, updatable = false)
     private FileStorage fileStorage;
@@ -33,4 +37,6 @@ public class FileStorageAlbum {
     @ManyToOne
     @JoinColumn(name = "album_id", nullable=false, insertable = false, updatable = false)
     private Album album;
+
+
 }
