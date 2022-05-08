@@ -52,14 +52,14 @@ public class AlbumService implements IAlbumService {
     }
 
     @Override
-    public List<AlbumDTO> getAllFiltered(AlbumStatus albumStatus, Boolean currentUser) {
+    public List<AlbumDTO> getAllFiltered(AlbumStatus albumStatus, String email, boolean currentUser) {
         List<Album> result;
         if (currentUser) {
-            result = albumRepository.findAllByAlbumStatusAndDeletedAtIsNull(albumStatus);
+            result = albumRepository.findAllByAlbumStatusAndAuthorEmailAndDeletedAtIsNull(albumStatus, email);
         } else {
             result = albumRepository.findAllByAlbumStatusAndDeletedAtIsNull(albumStatus);
         }
-        return albumRepository.findAllByAlbumStatusAndDeletedAtIsNull(albumStatus).stream().map(album -> {
+        return result.stream().map(album -> {
             AlbumDTO albumDTO = albumMapper.entityToApi(album);
             albumDTO.setFileStorages(fileStorageService.getAllFileStoragesIn(fileStorageAlbumRepository.findAllByAlbumId(album.getId()).stream().map(FileStorageAlbum::getFileStorageId).collect(Collectors.toList())));
             return albumDTO;

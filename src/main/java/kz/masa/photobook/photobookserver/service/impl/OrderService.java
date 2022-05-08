@@ -27,7 +27,7 @@ public class OrderService implements IOrderService {
     public OrderDTO getOrderById(Long id) {
         OrderDTO response = orderMapper.entityToApi(orderRepository.findOrderByIdAndDeletedAtIsNull(id));
         response.setReceipt(fileStorageService.getFileStorageById(response.getReceiptId()));
-        return orderMapper.entityToApi(orderRepository.findOrderByIdAndDeletedAtIsNull(id));
+        return response;
     }
 
     @Override

@@ -8,6 +8,7 @@ import kz.masa.photobook.photobookserver.util.CommonService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -32,8 +33,8 @@ public class AlbumController extends CommonService {
     }
 
     @RequestMapping(value = "/read/filter", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<?> getAllFiltered(@RequestParam AlbumStatus albumStatus, @RequestParam Boolean currentUser) {
-        return builder(success(albumService.getAllFiltered(albumStatus, currentUser)));
+    public ResponseEntity<?> getAllFiltered(@RequestParam AlbumStatus albumStatus, @RequestParam(required = false) boolean currentUser, @RequestHeader(value = "email", required = false) String email) {
+        return builder(success(albumService.getAllFiltered(albumStatus, email, currentUser)));
     }
 
     @RequestMapping(value = "/publish", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)

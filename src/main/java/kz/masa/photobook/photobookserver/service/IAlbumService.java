@@ -12,7 +12,7 @@ import java.util.List;
 public interface IAlbumService {
     AlbumDTO getAlbumById(Long id);
     List<AlbumDTO> getAllAlbums();
-    List<AlbumDTO> getAllFiltered(AlbumStatus albumStatus, Boolean currentUser);
+    List<AlbumDTO> getAllFiltered(AlbumStatus albumStatus, String email, boolean currentUser);
     AlbumDTO publishAlbum(Album album, String email);
     AlbumDTO draftAlbum(Album album, String email);
     AlbumDTO createAlbum(Album album, String email);

@@ -10,7 +10,8 @@ spring:
     username: postgres
     password: 12345
     driver-class-name: org.postgresql.Driver
-
+#http://34.125.182.198/
+# bash update.sh чтобы обновить обновления
   jpa:
     hibernate:
       ddl-auto: update
