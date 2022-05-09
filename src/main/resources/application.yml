@@ -14,7 +14,7 @@ spring:
 # bash update.sh чтобы обновить обновления
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     properties:
