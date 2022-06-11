@@ -12,9 +12,11 @@ spring:
     driver-class-name: org.postgresql.Driver
 #http://34.125.182.198/
 # bash update.sh чтобы обновить обновления
+# FDJKFJDGKGDGKLDG
+  #DKLSD
   jpa:
     hibernate:
-      ddl-auto: update
+        ddl-auto: create
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     properties:
